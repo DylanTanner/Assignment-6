@@ -1,8 +1,11 @@
 <div class="container">
     <div class="row">
         <main class="col-md-12">
-
-            <!-- Start your code here -->
+            <!-- Display error message if it exists -->
+            <!-- Add the following lines -->
+            {{#if error}}
+            <div class="alert alert-danger" role="alert">{{error}}</div>
+            {{/if}}
             
             <form method="POST" action="/students/add">
                 <fieldset>
@@ -11,13 +14,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>First Name:</label>
-                                <input class="form-control" name="firstName" type="text" />
+                                <!-- Utilize placeholder and value attribute -->
+                                <input class="form-control" name="firstName" type="text" value="{{studentData.firstName}}" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Last Name:</label>
-                                <input class="form-control" name="lastName" type="text"  />
+                                <!-- Utilize placeholder and value attribute -->
+                                <input class="form-control" name="lastName" type="text" value="{{studentData.lastName}}" />
                             </div>
                         </div>
                     </div>
@@ -25,7 +30,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Email:</label>
-                                <input class="form-control" name="email" type="email" />
+                                <!-- Utilize placeholder and value attribute -->
+                                <input class="form-control" name="email" type="email" value="{{studentData.email}}" />
                             </div>
                         </div>
                     </div>
@@ -33,19 +39,22 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Address (Street):</label>
-                                <input class="form-control" name="addressStreet" type="text" />
+                                <!-- Utilize placeholder and value attribute -->
+                                <input class="form-control" name="addressStreet" type="text" value="{{studentData.addressStreet}}" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Address (City):</label>
-                                <input class="form-control" name="addressCity" type="text" />
+                                <!-- Utilize placeholder and value attribute -->
+                                <input class="form-control" name="addressCity" type="text" value="{{studentData.addressCity}}" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Address (Province):</label>
-                                <input class="form-control" name="addressProvince" type="text" />
+                                <!-- Utilize placeholder and value attribute -->
+                                <input class="form-control" name="addressProvince" type="text" value="{{studentData.addressProvince}}" />
                             </div>
                         </div>
                     </div>
@@ -56,7 +65,8 @@
                         <div class="col-md-4">
                             <label>College Employment:</label><br />
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="TA">
+                                <!-- Utilize conditional rendering -->
+                                <input class="form-check-input" type="checkbox" id="TA" name="TA" {{#if studentData.TA}}checked{{/if}}>
                                 <label class="form-check-label" for="TA">
                                     Teaching Assistant
                                 </label>
@@ -67,28 +77,24 @@
                             <div class="form-group">
                                 <label>Enrollment Status:</label><br />
                                 <label class="checkbox-inline">
-                                    <input type="radio" value="Full Time" /> Full Time
+                                    <!-- Utilize conditional rendering -->
+                                    <input type="radio" name="status" value="Full Time" {{#if (equal studentData.status 'Full Time')}}checked{{/if}}> Full Time
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="radio" value="Part Time" /> Part Time
+                                    <!-- Utilize conditional rendering -->
+                                    <input type="radio" name="status" value="Part Time" {{#if (equal studentData.status 'Part Time')}}checked{{/if}}> Part Time
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="course">Enrolled in Course:</label>
-                                <select class="form-control" id="course" name="course">
-                                    <option value="DES720">Relational Database Design and Implementation</option>
-                                    <option value="JAV745">Java Programming</option>
-                                    <option value="OPS705">Introduction to Cloud Computing</option>
-                                    <option value="SQL710">Database Administration and Management</option>
-                                    <option value="WEB700">Web Programming</option>
-                                    <option value="CAP805">Applied Capstone Project</option>
-                                    <option value="CJV805">Database Connectivity Using Java</option>
-                                    <option value="DBD800">Accessing Big Data</option>
-                                    <option value="DBW825">Datawarehousing</option>
-                                    <option value="SEC835">Security in Databases and Web Applications</option>
-                                    <option value="WTP100">Work Term Preparation (Work-Integrated Learning option only)</option>
+                                <select class="form-control" name="course" id="course">
+                                    <option value="">Select Course</option>
+                                    <!-- Populate select options dynamically -->
+                                    {{#each courses}}
+                                    <option value="{{this.courseId}}" {{#if (equal studentData.course this.courseId)}}selected{{/if}}>{{this.courseCode}}</option>
+                                    {{/each}}
                                 </select>
                             </div>
                         </div>
@@ -97,9 +103,6 @@
                 <hr />
                 <input type="submit" class="btn btn-primary float-right" value="Add Student" /><br /><br /><br />
             </form>
-            
-            <!-- End your code here -->
-
         </main>
     </div>
 </div>

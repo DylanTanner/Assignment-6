@@ -20,6 +20,7 @@
                 <td>{{this.addressStreet}}, {{this.addressCity}}, {{this.addressProvince}}</td>
                 <td>{{this.status}}</td>
                 <td><a href="/students?course={{this.course}}">{{this.course}}</a></td>
+                <td><a href="/student/delete/{{this.studentNum}}" class="btn btn-danger">Remove</a></td>
             </tr>
             {{/each}}
         </tbody>

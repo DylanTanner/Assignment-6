@@ -2,23 +2,29 @@
     <div class="col-md-12">
         <h2>{{course.courseDescription}}</h2>
         <hr>
-        <form>
+        <!-- Form submission now directed to /courses/modify -->
+        <form action="/courses/modify" method="POST">
+            <!-- Hidden input field for storing the course ID -->
+            <input type="hidden" name="courseId" value="{{course.courseId}}">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="courseCode">Course Code:</label>
-                        <input class="form-control" id="courseCode" name="courseCode" type="text" readonly value="{{course.courseCode}}"/>
+                        <label for="courseCode">Code:</label>
+                        <!-- Editable input for course code -->
+                        <input class="form-control" id="courseCode" name="courseCode" type="text" value="{{course.courseCode}}" required/>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label for="courseDescription">Course Description:</label>
-                        <input class="form-control" id="courseDescription" name="courseDescription" type="text" readonly value="{{course.courseDescription}}"/>
+                        <label for="courseDescription">Description:</label>
+                        <!-- Editable input for course description -->
+                        <input class="form-control" id="courseDescription" name="courseDescription" type="text" value="{{course.courseDescription}}" required/>
                     </div>
                 </div>
             </div>
             <hr>
+            <!-- Button to submit updated course information -->
+            <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
     </div>
-    
 </div>

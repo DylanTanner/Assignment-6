@@ -1,26 +1,33 @@
+<!-- Button to add a new course -->
+<a href="/courses/add" class="btn btn-primary float-right">Create New Course</a>
+
+<!-- Display courses table if there are courses -->
 {{#if courses.length}}
 <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
-                <th>Course Code</th>
-                <th>Course Description</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Action</th> <!-- Action column header -->
             </tr>
         </thead>
         <tbody>
-
             {{#each courses}}
-<tr>
-<td><a href="/course/{{this.courseId}}">{{this.courseCode}}</a></td>
-<td><a href="/students?course={{this.courseId}}">{{this.courseDescription}}</a></td>
-
-</tr>
-{{/each}}
-
+            <tr>
+                <td><a href="/course/{{this.courseId}}">{{this.courseCode}}</a></td>
+                <td><a href="/students?course={{this.courseId}}">{{this.courseDescription}}</a></td>
+                <td>
+                    <!-- Different action button -->
+                    <a href="/courses/delete/{{this.courseId}}" class="btn btn-danger">Remove</a>
+                </td>
+            </tr>
+            {{/each}}
         </tbody>
     </table>
 </div>
 {{else}}
+<!-- Display a message if there are no courses -->
 <div class="col-md-12 text-center">
     <strong>{{message}}</strong>
 </div>

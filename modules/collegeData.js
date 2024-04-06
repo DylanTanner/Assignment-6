@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('neondb', 'neondb_owner', 'Zirm4UHes3Il', {
-    host: 'ep-floral-sound-a58zs1j6.us-east-2.aws.neon.tech',
+const sequelize = new Sequelize('neondb', 'neondb_owner', 'cf0ALIn8TeQ', {
+    host: 'ep-twilight-violet-a5qop1xw.us-east-2.aws.neon.tech',
     dialect: 'postgres',
     port: 5432,
     dialectOptions: {
@@ -8,6 +8,7 @@ const sequelize = new Sequelize('neondb', 'neondb_owner', 'Zirm4UHes3Il', {
     },
     query: { raw: true }
 });
+
 
 const Student = sequelize.define('Student', {
     studentNum: {
